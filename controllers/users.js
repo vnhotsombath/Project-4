@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 // since we are sharing code, when you pull you don't want to have to edit the
 // the bucket name, thats why we're using an environment variable
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+const SECRET = process.env.SECRET;
 
 
 module.exports = {
@@ -44,6 +45,7 @@ async function signup(req, res) {
       res.json({ token }); // shorthand for the below
       // res.json({ token: token })
     } catch (err) {
+      //THIS IS AN EXAMPLE OF HOW TO HANDLE VALIDATION ERRORS FROM MONGOOSE
       if (err.name === "MongoServerError" && err.code === 11000) {
         console.log(err.message, "err.message");
         res
@@ -80,7 +82,7 @@ async function login(req, res) {
       }
     });
   } catch (err) {
-    return res.status(401).json({err: 'error message');
+    return res.status(401).json({err: 'error message'});
   }
 }
 
@@ -95,6 +97,7 @@ function createJWT(user) {
   );
 }
 
+//VALIDATION ERRORS
 function identifyKeyInMongooseValidationError(err) {
   let key = err.split("dup key: {")[1].trim();
   key = key.slice(0, key.indexOf(":"));
