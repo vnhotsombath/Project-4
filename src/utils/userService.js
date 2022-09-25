@@ -10,14 +10,11 @@ function signup(user) {
   return fetch(BASE_URL + 'signup', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json'}),
-    body: JSON.stringify(user) // THIS IS ASSUMING YOU ARE SENDING MULTIPART-FORMDATA REQUEST AKA UPLOADING A PHOTO
+    body: JSON.stringify(user) 
   })
   .then(res => {
     if (res.ok) return res.json();
-    // Probably a duplicate email
     
-    // Writing your error handling like this allows you to throw the error response 
-    // to the catch block where signup occurs,  
 
 //     res.status(400).json({ err: "Something went wrong" }); notice err, and response.err match
     return res.json().then(response => {

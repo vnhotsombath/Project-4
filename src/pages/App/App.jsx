@@ -14,10 +14,10 @@ function App() {
     setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
   }
 
-  function handleLogout() {
-    userService.logout();
-    setUser(null);
-  }
+  // function handleLogout() {
+  //   userService.logout();
+  //   setUser(null);
+  // }
 
   if (user) {
     //IF THE USER IS LOGGED IN
