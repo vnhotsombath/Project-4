@@ -55,7 +55,7 @@ export default function LoginPage(props) {
           </Header>
           <Form onSubmit={handleSubmit}>
             <Segment stacked>
-            <Form.Input
+               <Form.Input
                 type="email"
                 name="email"
                 placeholder="email"
