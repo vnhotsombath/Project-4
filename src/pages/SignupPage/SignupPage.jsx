@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 
@@ -9,8 +9,12 @@ function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
 }
 
-export default function SignUpPage({ handleSignUpOrLogin }) {
-  const [error, setError] = useState("");
+export default function SignUpPage(props) {
+  const [error, setError] = useState({
+    message: '',
+    passwordError: false
+  });
+
   const [state, setState] = useState({
     username: "",
     email: "",
@@ -27,7 +31,7 @@ export default function SignUpPage({ handleSignUpOrLogin }) {
     })
   }
 
-  const [selectedFile, setSelectedFile] = useState("");
+  // const [selectedFile, setSelectedFile] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,7 +41,7 @@ export default function SignUpPage({ handleSignUpOrLogin }) {
 
     try {
       await userService.signup(state);
-      handleSignUpOrLogin();
+      props.handleSignUpOrLogin();
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -48,13 +52,13 @@ export default function SignUpPage({ handleSignUpOrLogin }) {
   return (
     <Grid
       textAlign="center"
-      style={{ height: "100vh " }}
+      style={{ height: "100vh" }}
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" textAlign="center">
           <Image src="https://i.imgur.com/MtLTwjH.png" />
-          Sign Up{" "}
+          Sign Up
         </Header>
         <Form onSubmit={handleSubmit}>
           <Segment stacked>
@@ -66,6 +70,7 @@ export default function SignUpPage({ handleSignUpOrLogin }) {
               required
             />
             <Form.Input
+              type="email"
               name="email"
               placeholder="email"
               value={state.email}
@@ -82,6 +87,7 @@ export default function SignUpPage({ handleSignUpOrLogin }) {
               required
             />
             <Form.Input
+            error={error.passwordError}
               name="passwordConf"
               type="password"
               placeholder="Confirm Password"
