@@ -73,7 +73,6 @@ async function login(req, res) {
     if (!user) return res.status(401).json({err: 'bad credentials'});
     // had to update the password from req.body.pw, to req.body password
     user.comparePassword(req.body.password, (err, isMatch) => {
-        
       if (isMatch) {
         const token = createJWT(user);
         res.json({token});

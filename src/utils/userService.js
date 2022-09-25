@@ -14,20 +14,13 @@ function signup(user) {
   })
   .then(res => {
     if (res.ok) return res.json();
-    
-
-//     res.status(400).json({ err: "Something went wrong" }); notice err, and response.err match
     return res.json().then(response => {
       console.log(response)
       throw new Error(response.err)
     })
   })
-  // Parameter destructuring!
+  
   .then(({token}) => tokenService.setToken(token));
-  // Setting our token in localStorage in our browser
-  // then we'll be able to use with every request!
-  // The above could have been written as
-  //.then((token) => token.token);
 }
 
 function getUser() {
@@ -45,7 +38,6 @@ function login(creds) {
     body: JSON.stringify(creds)
   })
   .then(res => {
-    // Valid login if we have a status of 2xx (res.ok)
     if (res.ok) return res.json();
     return res.json().then(response => {
       console.log(response)

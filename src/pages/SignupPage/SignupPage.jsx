@@ -95,7 +95,7 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Button type="submit" className="btn">
+            <Button type="submit" className="btn" color="green">
               Sign Up
             </Button>
           </Segment>
