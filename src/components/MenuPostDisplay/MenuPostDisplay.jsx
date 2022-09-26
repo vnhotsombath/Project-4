@@ -4,6 +4,6 @@ import Meal from '../MealCard/MealCard';
 
 export default function MenuPostDisplay(props){
     return(
-        <div>Menu Post Display Container</div>
+        <div><h1>MENU ITEMS HERE!</h1></div>
     )
 }

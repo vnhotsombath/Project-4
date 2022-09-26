@@ -5,6 +5,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage";
 import MenuPage from "../MenuPage/MenuPage";
+import OrderPage from "../OrderPage/OrderPage";
 
 import userService from "../../utils/userService";
 
@@ -34,8 +35,9 @@ function App() {
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
         <Route path="/Menu" element={<MenuPage />} />
+        <Route path="/orders" element={<OrderPage />} />
       </Routes>
-    );
+    );    
   }
 
   //IF THE USER IS NOT LOGGED IN
