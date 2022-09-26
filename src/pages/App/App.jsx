@@ -4,6 +4,8 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage";
+import MenuPage from "../MenuPage/MenuPage";
+
 import userService from "../../utils/userService";
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
+        <Route path="/Menu" element={<MenuPage />} />
       </Routes>
     );
   }
