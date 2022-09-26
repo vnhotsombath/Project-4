@@ -2,9 +2,18 @@ import tokenService from './tokenService';
 
 const BASE_URL = '/api/users/';
 
+function getProfile(username){
+  console.log('getProfile calling')
+  return fetch(BASE_URL + username, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  }).then(res => {
+    if(res.ok) return res.json();
+    throw new Error('Bad Credentials!')
+  })
+}
 
-// NOTE THIS IS configured to send of a multi/part form request
-// aka photo 
 function signup(user) {
   console.log(user, '<--USER SIGN UP');
   return fetch(BASE_URL + 'signup', {
@@ -52,5 +61,6 @@ export default {
   signup, 
   logout,
   login,
-  getUser
+  getUser,
+  getProfile,
 };

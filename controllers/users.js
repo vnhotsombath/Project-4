@@ -1,5 +1,7 @@
 const User = require('../models/user');
+const Order = require('../models/order');
 const jwt = require('jsonwebtoken');
+
 // const S3 = require("aws-sdk/clients/s3");
 // const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
 // import uuid to help generate random names
@@ -12,8 +14,23 @@ const SECRET = process.env.SECRET;
 
 module.exports = {
   signup,
-  login
+  login,
+  profile,
 };
+
+async function profile(req, res){
+  try{
+    const user = await User.findOne({ usernmae: req.params.username });
+    if (!user) return res.status(404).json({ error: "User not found"});
+
+    const orders = await Order.find({ user: user._id}).populate("user").exec();
+    console.log(orders, ' this order')
+    res.status(200).json({data: orders, user: user})
+  } catch(err){
+    console.log(err)
+    res.status(400).json({err})
+  }
+}
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup");

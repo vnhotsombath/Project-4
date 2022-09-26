@@ -4,8 +4,10 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage";
+import ProfilePage from "../ProfilePage/ProfilePage";
 import MenuPage from "../MenuPage/MenuPage";
 import OrderPage from "../OrderPage/OrderPage";
+
 
 import userService from "../../utils/userService";
 
@@ -35,6 +37,7 @@ function App() {
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
         <Route path="/Menu" element={<MenuPage />} />
+        <Route path="/:username" element={<ProfilePage />} />
         <Route path="/orders" element={<OrderPage />} />
       </Routes>
     );    

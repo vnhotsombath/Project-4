@@ -1,13 +1,20 @@
 import React from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Header, Segment, Icon, Image } from 'semantic-ui-react';
 
-export default function PageHeader(){
+export default function PageHeader({ loggedUser }){
+    console.log(loggedUser, "loggedUser in header");
     return(
-        <Segment>
-            <Header as='h2'
-               content='HEADER'
-               subheader='New menu every Week!'>
+        <Segment clearing>
+            <Header as="h2" floated="left">
+                    <Link to="/"><Image 
+                    name="home"
+                    size="small"
+                    circular src={"https://i.imgur.com/TgOFHKs.png" }/></Link>
+            </Header>
+            <Header as='h2' floated='right'>
+                Logout
             </Header>
         </Segment>
-    )
+    );
 }
