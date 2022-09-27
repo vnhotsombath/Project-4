@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
-import { Form, Button, Row, Col, FormGroup, FormLabel, FormControl } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 import { useNavigate, Link } from "react-router-dom";
 
@@ -36,48 +38,36 @@ export default function LoginPage(props) {
   }
 
   return (
-    
+<Card>
+      <Card.Body>
     <Form onSubmit={handleSubmit}>
-      <FormGroup controlId='username'>
-          <FormLabel>Username</FormLabel>
-            <FormControl
-              type="username"
-              placeholder="username"
-              value={state.username}
-              onChange={handleChange}></FormControl>
-              </FormGroup>
-            <FormGroup controlId='email'>
-          <FormLabel>Email Address</FormLabel>
-            <FormControl
-              type="email"
+    <Form.Group controlId='email'>
+          <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              name="email"
+              type="text"
               placeholder="Enter email"
               value={state.email}
-              onChange={handleChange}></FormControl>
-              </FormGroup>
-            <FormGroup controlId='password'>
-          <FormLabel>Password</FormLabel>
-            <FormControl
+              onChange={handleChange}
+              required/>
+              </Form.Group>
+            <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+            <Form.Control
             error={error.passwordError}
+              name="password"
               type="password"
               placeholder="Enter password"
               value={state.password}
-              onChange={handleChange}></FormControl>
-              </FormGroup>
-            <FormGroup controlId='confirmPassword'>
-              <FormLabel>Confirm Password</FormLabel>
-              <FormControl
-            error={error.passwordError}
-              name="passwordConf"
-              type="password"
-              placeholder="Confirm Password"
-              value={state.passwordConf}
               onChange={handleChange}
-            />
-            </FormGroup>
-            <Button type="submit" className="btn" color="green">
-              Sign Up
+              required/>
+              </Form.Group>
+             <Button variant="primary" type="submit">
+              Log In
             </Button>
           {error.message ? <ErrorMessage error={error.message} /> : null}
         </Form>     
+        </Card.Body>
+        </Card> 
     );
   }
