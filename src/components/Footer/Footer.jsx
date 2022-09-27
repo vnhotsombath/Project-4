@@ -1,12 +1,14 @@
 import React from 'React';
-import { Segment, Header } from 'semantic-ui-react';
+
 
 export default function PageFooter(){
     return(
-        <Segment>
-            <Header as='h2'>
-                Footer
-            </Header>
-        </Segment>
+        <div>
+            <List floated="Right" horizontal>
+                <List.Item disabled href='#'>
+                    TheGoodEats Company
+                </List.Item>
+            </List>
+        </div>
     )
 }

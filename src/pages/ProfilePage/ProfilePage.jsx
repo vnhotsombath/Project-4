@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
-import PageHeader from "../../components/Header/Header";
-import Loading from "../../components/Loader/Loader";
+
+import PageHeader from "../../components/NavBar/NavBar";
 import AddOrder from "../../components/AddOrder/AddOrder";
 import OrderPostDisplay from "../../components/OrderPostDisplay/OrderPostDisplay";
 
@@ -49,7 +48,6 @@ if (loading) {
     return (
         <>
         <PageHeader />
-        <Loading />
         </>
     )
 }
@@ -57,25 +55,11 @@ if (loading) {
 
 
     return(
-        <Grid>
-            <Grid.Row>
-                <Grid.Column>
-                    <PageHeader />
-                </Grid.Column>
-            </Grid.Row>
-            <Grid.Row centered>
-                <Grid.Column style={{maxWidth: 750}}>
-                    <OrderPostDisplay />
-                   <h1>Your Orders!</h1>
-                </Grid.Column>
-                <Grid.Row centered>
-                <Grid.Column style={{maxWidth: 750}}>
-                    <AddOrder />
+        <div>
+        <h1>Your Orders!</h1>
+        <br></br>
                    <h1>Add Orders</h1>
-                </Grid.Column>
-            </Grid.Row>
-            </Grid.Row>
-            </Grid>
+                </div>
             
     )
 }

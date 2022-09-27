@@ -1,5 +1,5 @@
 import React from 'React';
-import { Grid, Segment } from 'semantic-ui-react';
+
 
 export default function ProfileBio({user}) {
     return (

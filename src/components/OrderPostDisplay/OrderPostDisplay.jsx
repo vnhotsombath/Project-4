@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+
 import Meal from '../MealCard/MealCard';
 
 export default function OrderPostDisplay(props){

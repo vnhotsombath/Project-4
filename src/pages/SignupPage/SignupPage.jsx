@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+
 
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
@@ -50,43 +53,43 @@ export default function SignUpPage(props) {
   }
 
   return (
-    <Grid
-      textAlign="center"
-      style={{ height: "100vh" }}
-      verticalAlign="middle"
-    >
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" textAlign="center">
-          <Image src="https://i.imgur.com/MtLTwjH.png" />
-          Sign Up
-        </Header>
-        <Form onSubmit={handleSubmit}>
-          <Segment stacked>
-            <Form.Input
+    <Card>
+      <Card.Body>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId='username'>
+          <Form.Label>Username</Form.Label>
+            <Form.Control
               name="username"
+              type="text"
               placeholder="username"
               value={state.username}
               onChange={handleChange}
-              required
-            />
-            <Form.Input
-              type="email"
+              required />
+              </Form.Group>
+            <Form.Group controlId='email'>
+          <Form.Label>Email Address</Form.Label>
+            <Form.Control
               name="email"
-              placeholder="email"
+              type="text"
+              placeholder="Enter email"
               value={state.email}
               onChange={handleChange}
-              required
-            />
-            <Form.Input
+              required/>
+              </Form.Group>
+            <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+            <Form.Control
             error={error.passwordError}
               name="password"
               type="password"
-              placeholder="password"
+              placeholder="Enter password"
               value={state.password}
               onChange={handleChange}
-              required
-            />
-            <Form.Input
+              required/>
+              </Form.Group>
+            <Form.Group controlId='confirmPassword'>
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
             error={error.passwordError}
               name="passwordConf"
               type="password"
@@ -95,13 +98,14 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Button type="submit" className="btn" color="green">
+            </Form.Group>
+            <Button variant="primary" type="submit">
               Sign Up
             </Button>
-          </Segment>
           {error.message ? <ErrorMessage error={error.message} /> : null}
-        </Form>
-      </Grid.Column>
-    </Grid>
+        </Form>     
+        </Card.Body>
+        </Card>
+        
   );
 }
