@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import PageHeader from "../../components/NavBar/NavBar";
+import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import AddOrder from "../../components/AddOrder/AddOrder";
 import OrderPostDisplay from "../../components/OrderPostDisplay/OrderPostDisplay";
+import Loading from "../../components/Loader/Loader";
 
 import userService from "../../utils/userService";
 import { useParams } from 'react-router-dom';
 import { useCallback } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-export default function MenuPage(){
+export default function ProfilePage({ loggedUser }){
 const [orders, setOrders] = useState([]);
 const [profileUser, setProfileUser] = useState({});
 const [loading, setLoading] = useState(true);

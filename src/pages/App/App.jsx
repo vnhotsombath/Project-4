@@ -38,7 +38,7 @@ function App() {
         />
         <Route path="/Menu" element={<MenuPage />} />
         <Route path="/:username" element={<ProfilePage />} />
-        <Route path="/orders" element={<OrderPage />} />
+        <Route path="/order" element={<OrderPage />} />
       </Routes>
     );    
   }
