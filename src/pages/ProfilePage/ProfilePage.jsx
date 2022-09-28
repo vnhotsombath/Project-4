@@ -40,7 +40,7 @@ useEffect(() => {
 if (error) {
     return(
         <>
-        <PageHeader />
+        
         <ErrorMessage error={error} />;
         </>
     );
@@ -48,7 +48,7 @@ if (error) {
 if (loading) {
     return (
         <>
-        <PageHeader />
+        
         </>
     )
 }

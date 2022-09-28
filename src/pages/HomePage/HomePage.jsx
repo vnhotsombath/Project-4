@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Introduction from "../../components/Introduction/Introduction";
+
 
 
 
 
 export default function HomePage(){
     return(
-                <Introduction />
+                <div><h1>This is the Homepage</h1></div>
     )
 }

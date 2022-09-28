@@ -20,7 +20,7 @@ module.exports = {
 
 async function profile(req, res){
   try{
-    const user = await User.findOne({ usernmae: req.params.username });
+    const user = await User.findOne({ username: req.params.username });
     if (!user) return res.status(404).json({ error: "User not found"});
 
     const orders = await Order.find({ user: user._id}).populate("user").exec();
