@@ -7,7 +7,9 @@ import Form from 'react-bootstrap/Form';
 
 export default function AddOrderForm(props){
     // create the state, pay attention to how the inputs are setup
-
+    const [state, setState] = useState({
+        
+    })
 
     //The function that handles the changes on the input, look at the inputs for the name of it
 

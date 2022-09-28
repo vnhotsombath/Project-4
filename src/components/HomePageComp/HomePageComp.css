@@ -1,0 +1,16 @@
+.Background {
+    background-image: linear-gradient( rgba(0,0,0, 0.6), rgba(0, 0, 0, 0.5)),url('https://i.imgur.com/oUnKSEz.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.meal {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
