@@ -8,53 +8,74 @@ import Form from 'react-bootstrap/Form';
 export default function AddOrderForm(props){
     // create the state, pay attention to how the inputs are setup
     const [state, setState] = useState({
-        
+        firstName: "",
+        lastName: "",
+        address: "",
+        address2: "",
+        city: "",
+        zip: "",
     })
 
     //The function that handles the changes on the input, look at the inputs for the name of it
 
     function handleSubmit(e){
+        e.preventDefault();
 
     }
 
-
+    function handleChange(e){
+        setState({
+          ...state,
+          [e.target.name]: e.target.value
+        })
+      }
 
     return(
         <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridName">
                     <Form.Label>First Name</Form.Label>
-                    <Form.Control type="name" placeholder="Enter First Name" />
+                    <Form.Control 
+                    type="name" 
+                    placeholder="Enter First Name" 
+                    onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridName">
                     <Form.Label>Last Name</Form.Label>
-                    <Form.Control type="name" placeholder="Enter Last Name" />
+                    <Form.Control 
+                    type="name" 
+                    placeholder="Enter Last Name"
+                    onChange={handleChange} />
                 </Form.Group>
             </Row>
 
             <Form.Group className="mb-3" controlId="formGridAddress">
                 <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="1234 Main St" />
+                <Form.Control 
+                placeholder="1234 Main St"
+                onChange={handleChange} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
                 <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="Apartment/Studio/Floor" />
+                <Form.Control 
+                placeholder="Apartment/Studio/Floor"
+                onChange={handleChange} />
             </Form.Group>
 
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>City</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={handleChange} />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridZip">
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={handleChange} />
                 </Form.Group>
             </Row>
 
-            <Button variant="primary" type="submit"> Place Order </Button>
+            <Button variant="primary" type="submit"> Next </Button>
         </Form>
        
     )

@@ -1,5 +1,17 @@
-import React from 'react';
-import Meal from "./models/meal";
+const mongoose = require('mongoose');
+const Meal = require('./models/meal');
+require('dotenv').config();
+
+mongoose.connect(
+    process.env.DATABASE_URL
+);
+
+const db = mongoose.connection;
+
+db.on('connected', function(){
+    console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
+});
+
 
 const seedMeal = [
     {
@@ -51,3 +63,13 @@ const seedMeal = [
         numReviews: 10,
     }
 ]
+
+const SeedBD = async () => {
+    await Meal.deleteMany({});
+    await Meal.insertMany(seedMeal);
+};
+
+SeedBD().then(() => {
+    console.log('working')
+    mongoose.connection.close;
+})

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import ProfileBio from "../../components/ProfileBio/ProfileBio";
-import AddOrder from "../../components/AddOrder/AddOrder";
+import AddOrder from "../../components/Cart/Cart";
 import OrderPostDisplay from "../../components/OrderPostDisplay/OrderPostDisplay";
 import Loading from "../../components/Loader/Loader";
 
