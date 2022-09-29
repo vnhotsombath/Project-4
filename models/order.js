@@ -12,12 +12,7 @@ const orderSchema = new mongoose.Schema({
       qty: { type: Number, default: 0, required: true },
       img: { type: String, required: true },
       price: { type: Number, required: true },
-      meal: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "Meal",
       },
-    },
   ],
   anyAllergies: {
     type: Boolean,
@@ -29,21 +24,6 @@ const orderSchema = new mongoose.Schema({
     city: { type: String, required: false},
     postalCode: { type: String, required: false},
 
-  },
-  paymentMethod: {
-    type: String,
-    required: true
-  },
-  paymentResult: {
-    id: { type: String },
-    status: { type: String},
-    update_time: { type: String},
-    email_address: { type: String},
-  },
-  taxPrice: {
-    type: Number,
-    required: true,
-    default: 0.0
   },
   totalPrice: {
     type: Number,
