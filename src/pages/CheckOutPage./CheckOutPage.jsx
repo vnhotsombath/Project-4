@@ -3,7 +3,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 
 import Cart from "../../components/Cart/Cart";
-import AppNavBar from "../../components/AppNavBar/AppNavBar";
+import PageNav from "../../components/PageNav/PageNav";
 import PageFooter from "../../components/PageFooter/PageFooter";
 
 import * as ordersAPI from "../../utils/orderApi";
@@ -46,7 +46,7 @@ export default function CheckOut({ loggedUser }) {
     if(loading){
         return(
             <>
-            <AppNavBar loggedUser={loggedUser} />
+            <PageNav loggedUser={loggedUser} />
             <Loading />
             </>
         );
@@ -54,7 +54,7 @@ export default function CheckOut({ loggedUser }) {
 
     return(
         <>
-        <AppNavBar />
+        <PageNav />
             <h1>Place your orders here!</h1>
             <Cart handleAddOrder={handleAddOrder} />
         <PageFooter />

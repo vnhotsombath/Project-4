@@ -5,7 +5,6 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage";
 import ProfilePage from "../ProfilePage/ProfilePage";
-import MenuPage from "../MenuPage/MenuPage";
 import CheckOutPage from "../CheckOutPage./CheckOutPage";
 
 
@@ -36,7 +35,6 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
-        <Route path="/menu" element={<MenuPage />} />
         <Route path="/:username" element={<ProfilePage />} />
         <Route path="/checkout" element={<CheckOutPage />} />
       </Routes>

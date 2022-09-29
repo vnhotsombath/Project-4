@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
-import AppNavBar from "../../components/AppNavBar/AppNavBar";
+import PageNav from "../../components/PageNav/PageNav";
 import PageFooter from '../../components/PageFooter/PageFooter';
 import App from "../App/App";
 
@@ -57,7 +57,8 @@ export default function SignUpPage(props) {
 
   return (
     <>
-    <AppNavBar />
+    <PageNav />
+    <h1>Sign Up</h1>
     <Card>
       <Card.Body>
     <Form onSubmit={handleSubmit}>

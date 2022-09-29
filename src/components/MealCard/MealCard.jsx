@@ -1,17 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
-export default function MealCard({ meal }){
+export default function MealCard(props){
+    
+
+
     return(
         <Card style={{ width: '18rem'}}>
-            <Link to={`/meals/${meal._id}`}><Card.Img variant='top' src={meal.image} /></Link>
-            <Card.Body><Card.Title><strong>{meal.title}</strong></Card.Title>
-            <Card.Text as="div">{meal.description}</Card.Text></Card.Body>
-            <ListGroup.Item>{meal.calories}</ListGroup.Item>
-            <ListGroup.Item>{meal.price}</ListGroup.Item>
+            <Card.Img variant='top' src={props.image} />
+            <Card.Body><Card.Title><strong>{props.title}</strong></Card.Title>
+            <Card.Text as="div">{props.description}</Card.Text></Card.Body>
+            <ListGroup.Item>{props.calories}</ListGroup.Item>
+            <ListGroup.Item>{props.price}</ListGroup.Item>
             <Button variant="success">Add To Cart</Button>
         </Card>
     )

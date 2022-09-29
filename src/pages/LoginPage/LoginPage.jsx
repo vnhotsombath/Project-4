@@ -5,7 +5,7 @@ import userService from "../../utils/userService";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import AppNavBar from '../../components/AppNavBar/AppNavBar';
+import PageNav from "../../components/PageNav/PageNav";
 import PageFooter from '../../components/PageFooter/PageFooter';
 
 import { useNavigate, Link } from "react-router-dom";
@@ -41,7 +41,8 @@ export default function LoginPage(props) {
 
   return (
     <>
-    <AppNavBar />
+    <PageNav />
+    <h1>Login</h1>
 <Card>
       <Card.Body>
     <Form onSubmit={handleSubmit}>
