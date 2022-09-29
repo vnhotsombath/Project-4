@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const mealSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  img: { type: String, required: true },
+  image: { type: String, required: true },
   description: { type: String, required: true },
   calories: { type: String, required: true },
   price: { type: Number, required: true, min: 0 },

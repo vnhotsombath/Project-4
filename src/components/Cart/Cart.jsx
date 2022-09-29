@@ -37,6 +37,7 @@ export default function AddOrderForm(props){
                     <Form.Label>First Name</Form.Label>
                     <Form.Control 
                     type="name" 
+                    value={state.firstName}
                     placeholder="Enter First Name" 
                     onChange={handleChange} />
                 </Form.Group>
@@ -45,6 +46,7 @@ export default function AddOrderForm(props){
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control 
                     type="name" 
+                    value={state.lastName}
                     placeholder="Enter Last Name"
                     onChange={handleChange} />
                 </Form.Group>
@@ -54,6 +56,7 @@ export default function AddOrderForm(props){
                 <Form.Label>Address</Form.Label>
                 <Form.Control 
                 placeholder="1234 Main St"
+                value={state.address}
                 onChange={handleChange} />
             </Form.Group>
 
@@ -61,17 +64,20 @@ export default function AddOrderForm(props){
                 <Form.Label>Address</Form.Label>
                 <Form.Control 
                 placeholder="Apartment/Studio/Floor"
+                value={state.address2}
                 onChange={handleChange} />
             </Form.Group>
 
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>City</Form.Label>
-                    <Form.Control onChange={handleChange} />
+                    <Form.Control onChange={handleChange}
+                     value={state.city} />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridZip">
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control onChange={handleChange} />
+                    <Form.Control onChange={handleChange}
+                    value={state.zip} />
                 </Form.Group>
             </Row>
 
