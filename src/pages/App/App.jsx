@@ -6,7 +6,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import MenuPage from "../MenuPage/MenuPage";
-import OrderPage from "../CheckOutPage./CheckOutPage";
+import CheckOutPage from "../CheckOutPage./CheckOutPage";
 
 
 import userService from "../../utils/userService";
@@ -38,7 +38,7 @@ function App() {
         />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/:username" element={<ProfilePage />} />
-        <Route path="/order" element={<OrderPage />} />
+        <Route path="/checkout" element={<CheckOutPage />} />
       </Routes>
     );    
   }

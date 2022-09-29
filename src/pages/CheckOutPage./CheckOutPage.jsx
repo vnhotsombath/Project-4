@@ -4,7 +4,7 @@ import AppNavBar from "../../components/AppNavBar/AppNavBar";
 import PageFooter from "../../components/PageFooter/PageFooter";
 
 
-export default function OrderPage(){
+export default function CheckOut(){
     return(
         <>
         <AppNavBar />

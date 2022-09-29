@@ -7,20 +7,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 
 
-export default function navigationBar({ user}){
+export default function navigationBar({ user }){
    
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" fixed="top">
           <Container>
             <Navbar.Brand href="#home">TheGoodEatsCo.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <LinkContainer to="/"><Nav.Link href="#home"><Button variant="success">Home</Button></Nav.Link></LinkContainer>
-                <LinkContainer to="/login"><Nav.Link href="#link"><Button variant="success">Login</Button></Nav.Link></LinkContainer>
-                <Nav.Link href="#About"><Button variant="success">About</Button></Nav.Link>
-                <LinkContainer to="/"><Nav.Link href="#checkout"><Button variant="success">CheckOut</Button></Nav.Link></LinkContainer>
-                <LinkContainer to="/signup"><Nav.Link href="#Sign Up"><Button variant="success">Sign Up</Button></Nav.Link></LinkContainer>
+                <Nav.Item><LinkContainer to="/"><Button variant="success">Home</Button></LinkContainer></Nav.Item><br />
+                <Nav.Item><LinkContainer to="/login"><Button variant="success">Login</Button></LinkContainer></Nav.Item><br />
+                <Nav.Item><Button variant="success">About</Button></Nav.Item><br />
+                <Nav.Item><LinkContainer to="/checkout"><Button variant="success">CheckOut</Button></LinkContainer></Nav.Item><br />
+                <Nav.Item><LinkContainer to="/signup"><Button variant="success">Sign Up</Button></LinkContainer></Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </Container>
