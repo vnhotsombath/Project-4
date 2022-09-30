@@ -5,7 +5,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage";
 import ProfilePage from "../ProfilePage/ProfilePage";
-import CheckOutPage from "../CheckOutPage./CheckOutPage";
+import PostPage from "../PostPage/PostPage";
 
 
 import userService from "../../utils/userService";
@@ -36,7 +36,6 @@ function App() {
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
         <Route path="/:username" element={<ProfilePage />} />
-        <Route path="/checkout" element={<CheckOutPage />} />
       </Routes>
     );    
   }
@@ -44,6 +43,8 @@ function App() {
   //IF THE USER IS NOT LOGGED IN
   return (
     <Routes>
+       <Route path="/" element={<HomePage />} />
+       <Route path="/post" element={<PostPage />} />
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

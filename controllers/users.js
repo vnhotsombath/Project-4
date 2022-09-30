@@ -1,15 +1,14 @@
 const User = require('../models/user');
 const Order = require('../models/order');
 const jwt = require('jsonwebtoken');
-
-// const S3 = require("aws-sdk/clients/s3");
-// const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
+const SECRET = process.env.SECRET;
+const S3 = require("aws-sdk/clients/s3");
+const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
 // import uuid to help generate random names
-// const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 // since we are sharing code, when you pull you don't want to have to edit the
 // the bucket name, thats why we're using an environment variable
-//const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-const SECRET = process.env.SECRET;
+const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 
 module.exports = {
@@ -35,23 +34,23 @@ async function profile(req, res){
 async function signup(req, res) {
   console.log(req.body, " req.body in signup");
 
-  // if (!req.file) return res.status(400).json({ error: "Please submit Photo!" });
+  if (!req.file) return res.status(400).json({ error: "Please submit Photo!" });
   // Create the key that we will store in the s3 bucket name
   // pupstagram/ <- will upload everything to the bucket so it appears
   // like its an a folder (really its just nested keys on the bucket)
-  // const key = `pupstagram/${uuidv4()}-${req.file.originalname}`;
-  // const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
+  const key = `thegoodeatsco/${uuidv4()}-${req.file.originalname}`;
+  const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
 
-  // s3.upload(params, async function (err, data) {
+  s3.upload(params, async function (err, data) {
     // this function is called when we get a response from AWS
     // inside of the callback is a response from AWS!
-    // console.log("========================");
-    // console.log(err, " <--- err from aws");
-    // console.log("========================");
-    // if (err)
-    //   return res.status(400).json({
-    //     err: "Error from aws, check the server terminal!, you bucket name or keys are probley wrong",
-    //   });
+  console.log("========================");
+  console.log(err, " <--- err from aws");
+  console.log("========================");
+     if (err)
+     return res.status(400).json({
+         err: "Error from aws, check the server terminal!, you bucket name or keys are probley wrong",
+       });
 
     // data.Location <- should be the say as the key but with the aws domain
     // its where our photo is hosted on our s3 bucket
@@ -80,8 +79,8 @@ async function signup(req, res) {
         });
       }
     }
-  };
-
+  })
+}
 
 async function login(req, res) {
   try {

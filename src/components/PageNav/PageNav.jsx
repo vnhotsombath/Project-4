@@ -12,15 +12,14 @@ export default function navigationBar({ user }){
     return (
         <Navbar bg="light" expand="lg" >
           <Container>
-            <Navbar.Brand href="#home">TheGoodEatsCo.</Navbar.Brand>
+            <Navbar.Brand>TheGoodEatsCo.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Item><LinkContainer to="/"><Button variant="success">Home</Button></LinkContainer></Nav.Item><br />
-                <Nav.Item><LinkContainer to="/checkout"><Button variant="success">CheckOut</Button></LinkContainer></Nav.Item><br />
-                <Nav.Item><LinkContainer to="/login"><Button variant="success">Login</Button></LinkContainer></Nav.Item><br />
+                <Nav.Item><LinkContainer to="/"><Navbar.Brand><Button variant="success">Home</Button></Navbar.Brand></LinkContainer></Nav.Item><br />
+                <Nav.Item><LinkContainer to="/login"><Navbar.Brand><Button variant="success">Login</Button></Navbar.Brand></LinkContainer></Nav.Item><br />
                 
-                <Nav.Item><LinkContainer to="/signup"><Button variant="success">Sign Up</Button></LinkContainer></Nav.Item>
+                <Nav.Item><LinkContainer to="/signup"><Navbar.Brand><Button variant="success">Sign Up</Button></Navbar.Brand></LinkContainer></Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </Container>
