@@ -26,7 +26,7 @@ function create(req, res) {
     try {
       // Using our model to create a document in the posts collection in mongodb
       const post = await Post.create({
-        caption: req.body.caption,
+        description: req.body.description,
         user: req.user,
         photoUrl: data.Location, // < this is from aws
       });

@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const Order = require('../models/order');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 const S3 = require("aws-sdk/clients/s3");

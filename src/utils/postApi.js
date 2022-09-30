@@ -2,9 +2,6 @@ import tokenService from "./tokenService";
 
 const BASE_URL = "/api/posts";
 
-// This is where we create any of the fetch calls the communicate with the routes
-// in /api/routes (Routes folder => posts
-
 export function create(post) {
   return fetch(BASE_URL, {
     method: "POST",
@@ -20,6 +17,7 @@ export function create(post) {
     })
   });
 }
+
 
 export function getAll() {
   return fetch(BASE_URL, {
