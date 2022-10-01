@@ -8,9 +8,6 @@ import { useNavigate } from "react-router-dom";
 import PageNav from "../../components/PageNav/PageNav";
 import PageFooter from '../../components/PageFooter/PageFooter';
 
-
-
-
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
 }

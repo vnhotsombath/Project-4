@@ -6,7 +6,7 @@ function getProfile(username){
   console.log('getProfile calling')
   return fetch(BASE_URL + username, {
     headers: {
-      'Authorization': 'Bearer ' + tokenService.getToken()
+      'Authorization': 'Bearer ' + tokenService.getToken(),
     }
   }).then(res => {
     if(res.ok) return res.json();

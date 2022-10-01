@@ -36,6 +36,7 @@ function App() {
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
         <Route path="/:username" element={<ProfilePage />} />
+        <Route path="/posts" element={<PostPage />} />
       </Routes>
     );    
   }

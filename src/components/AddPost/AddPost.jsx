@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function AddPostForm(props){
     const [state, setState] = useState({
+        title: "",
         description: "",
     });
 
@@ -17,6 +18,7 @@ export default function AddPostForm(props){
 
     function handleChange(e){
         setState({
+            title: e.target.value,
             description: e.target.value,
         });
     }
@@ -34,6 +36,12 @@ export default function AddPostForm(props){
     return (
         <Form onSubmit={handleSubmit}>
         <InputGroup>
+        <InputGroup.Text>Title</InputGroup.Text>
+        <Form.Control
+        placeholder="title"
+        aria-label="title"
+        onChange={handleChange}
+        required />
         <InputGroup.Text>Description</InputGroup.Text>
         <Form.Control 
         as ="textarea" 

@@ -1,16 +1,16 @@
 const Post = require("../models/post");
+const User = require('../models/user');
 
 const S3 = require("aws-sdk/clients/s3");
-const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
-// import uuid to help generate random names
+const s3 = new S3(); 
 const { v4: uuidv4 } = require("uuid");
-// since we are sharing code, when you pull you don't want to have to edit the
-// the bucket name, thats why we're using an environment variable
+const e = require("express");
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 module.exports = {
   create,
   index,
+  getPost
 };
 
 function create(req, res) {
@@ -26,6 +26,7 @@ function create(req, res) {
     try {
       // Using our model to create a document in the posts collection in mongodb
       const post = await Post.create({
+        title: req.body.tile,
         description: req.body.description,
         user: req.user,
         photoUrl: data.Location, // < this is from aws
@@ -40,12 +41,64 @@ function create(req, res) {
 
 async function index(req, res) {
   try {
-    // this populates the user when you find the posts
-    // so you'll have access to the users information
-    // when you fetch teh posts
     const posts = await Post.find({}).populate("user").exec();
     res.status(200).json({ data: posts });
   } catch (err) {
     res.status(400).json({ err });
   }
 }
+
+async function getPost(req, res) {
+    try{
+        const post = await Post.findById(req.params.id);
+        resizeTo.status(200).json(post);
+    } catch (err) {
+        res.stauts(500).json(err);
+    }
+}
+
+// async function getAllPost(req, res){
+//     const username = req.query.user;
+//     const catName= req.qurey.cat;
+
+//     try{
+//         let posts;
+//         if(username){
+//             posts = await Post.find({username});
+//         } else if (catName){
+//             posts = await Post.find({
+//                 categories: {
+//                     $in: [catName],
+//                 },
+//             });
+//         } else {
+//             posts = await Post.find();
+//         }
+//         res.status(200).json(posts)
+//     } catch(err){
+//         res.status(500).json(err);
+//     }
+// }
+
+// async function updatePost(req, res){
+//     try {
+//         const post = await Post.findById(req.params.id);
+//         if (post.username === req.body.username){
+//             try{
+//                 const updatePost = await Post.findByIdAndUpdate(
+//                     req.params.id, {
+//                         $set: req.body,
+//                     },
+//                     { new: true }
+//                 );
+//                 res.status(200).json(updatePost);
+//             } catch(err){
+//                 res.status(500).json(err);
+//             }
+//         } else {
+//             res.status(400).json('You can only update YOUR post!');
+//         }
+//     } catch(err){
+//         res.status(500).json(err)
+//     }
+// }
