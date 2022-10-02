@@ -93,6 +93,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             addLike={addLike}
             loading={loading}
             loggedUser={loggedUser}
+            getPosts={getPosts}
           />
         </Grid.Column>
       </Grid.Row>

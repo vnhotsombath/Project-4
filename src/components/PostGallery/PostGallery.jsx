@@ -11,7 +11,8 @@ export default function PostGallery({
   removeLike,
   loading,
   loggedUser,
-  removePost
+  removePost,
+  getPosts
 }) {
 
 
@@ -35,6 +36,7 @@ export default function PostGallery({
             removeLike={removeLike}
             addLike={addLike}
             removePost={removePost}
+            getPosts={getPosts}
           
           />
         );

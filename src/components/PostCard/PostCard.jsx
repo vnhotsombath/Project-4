@@ -10,6 +10,7 @@ function PostCard({
   removeLike,
   loggedUser,
   removePost,
+  getPosts,
 }) {
 
 const navigate = useNavigate();
@@ -26,6 +27,7 @@ const navigate = useNavigate();
     async function deleteClickHandler(e) {
       try {
         await postsAPI.deletePost(post._id);
+        getPosts();
         navigate("/")
       } catch (err) {
         console.log(err,"this is the error")
