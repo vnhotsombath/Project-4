@@ -54,7 +54,7 @@ export default function Feed({ loggedUser, handleLogout }) {
 
   useEffect(() => {
     //Getting posts, C(R)UD
-
+    console.log("USEEFFECTTTTTTTT")
     getPosts();
   }, []); // This is useEffect runs once when the Feed component
 

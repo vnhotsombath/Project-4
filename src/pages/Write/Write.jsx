@@ -25,7 +25,6 @@ export default function Write({ loggedUser, handleLogout }) {
     }
   }
 
-
   return (
     <Grid centered>
       <Grid.Row>

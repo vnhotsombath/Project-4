@@ -9,7 +9,6 @@ function PostCard({
   addLike,
   removeLike,
   loggedUser,
-  removePost,
   getPosts,
 }) {
 
