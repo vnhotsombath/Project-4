@@ -1,12 +1,10 @@
 const User = require('../models/user');
+const Post = require('../models/post');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 const S3 = require("aws-sdk/clients/s3");
-const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
-// import uuid to help generate random names
+const s3 = new S3(); 
 const { v4: uuidv4 } = require("uuid");
-// since we are sharing code, when you pull you don't want to have to edit the
-// the bucket name, thats why we're using an environment variable
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 
@@ -14,53 +12,32 @@ module.exports = {
   signup,
   login,
   profile,
+  index
 };
 
-async function profile(req, res){
-  try{
-    const user = await User.findOne({ username: req.params.username });
-    if (!user) return res.status(404).json({ error: "User not found"});
-
-    const orders = await Order.find({ user: user._id}).populate("user").exec();
-    console.log(orders, ' this order')
-    res.status(200).json({data: orders, user: user})
-  } catch(err){
-    console.log(err)
-    res.status(400).json({err})
-  }
-}
-
+// ----SIGNUP---- //
 async function signup(req, res) {
-  console.log(req.body, " req.body in signup");
-
+  console.log(req.body, " req.body in signup", req.file);
   if (!req.file) return res.status(400).json({ error: "Please submit Photo!" });
-  // Create the key that we will store in the s3 bucket name
-  // pupstagram/ <- will upload everything to the bucket so it appears
-  // like its an a folder (really its just nested keys on the bucket)
-  const key = `thegoodeatsco/${uuidv4()}-${req.file.originalname}`;
+  const key = `P4DEMO/${uuidv4()}-${req.file.originalname}`;
   const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
 
   s3.upload(params, async function (err, data) {
-    // this function is called when we get a response from AWS
-    // inside of the callback is a response from AWS!
-  console.log("========================");
-  console.log(err, " <--- err from aws");
-  console.log("========================");
-     if (err)
-     return res.status(400).json({
-         err: "Error from aws, check the server terminal!, you bucket name or keys are probley wrong",
-       });
+    console.log("========================");
+    console.log(err, " <--- err from aws");
+    console.log("========================");
+    if (err)
+      return res.status(400).json({
+        err: "Error from aws, check the server terminal!, you bucket name or keys are probley wrong",
+      });
 
-    // data.Location <- should be the say as the key but with the aws domain
-    // its where our photo is hosted on our s3 bucket
-    const user = new User(req.body);
+  const user = new User({ ...req.body, photoUrl: data.Location});
     try {
       await user.save();
       const token = createJWT(user);
-      res.json({ token }); // shorthand for the below
-      // res.json({ token: token })
+      res.json({ token }); 
+     
     } catch (err) {
-      //THIS IS AN EXAMPLE OF HOW TO HANDLE VALIDATION ERRORS FROM MONGOOSE
       if (err.name === "MongoServerError" && err.code === 11000) {
         console.log(err.message, "err.message");
         res
@@ -79,8 +56,9 @@ async function signup(req, res) {
       }
     }
   })
-}
+};
 
+// ----LOGIN---- //
 async function login(req, res) {
   try {
     const user = await User.findOne({email: req.body.email});
@@ -88,6 +66,7 @@ async function login(req, res) {
     if (!user) return res.status(401).json({err: 'bad credentials'});
     // had to update the password from req.body.pw, to req.body password
     user.comparePassword(req.body.password, (err, isMatch) => {
+        
       if (isMatch) {
         const token = createJWT(user);
         res.json({token});
@@ -97,6 +76,35 @@ async function login(req, res) {
     });
   } catch (err) {
     return res.status(401).json({err: 'error message'});
+  }
+}
+
+// ----PROFILE ---- //
+async function profile(req, res) {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const posts = await Post.find({ user: user._id }).populate("user").exec();
+    res.status(200).json({
+      data: {
+        user: user,
+        posts: posts,
+      }
+    });
+  } catch (err) {
+    console.log(err.message, " <- profile controller");
+    res.status(400).json({ error: "Something went wrong, try again!" });
+  }
+}
+
+// ----INDEX---- //
+async function index(req, res) {
+  try {
+    const users = await User.find({})
+    res.status(200).json({ data: users });
+  } catch (err) {
+    res.status(400).json({ err });
   }
 }
 
@@ -111,7 +119,6 @@ function createJWT(user) {
   );
 }
 
-//VALIDATION ERRORS
 function identifyKeyInMongooseValidationError(err) {
   let key = err.split("dup key: {")[1].trim();
   key = key.slice(0, key.indexOf(":"));

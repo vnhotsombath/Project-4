@@ -1,9 +1,11 @@
-import Spinner from 'react-bootstrap/Spinner';
+import { Loader } from 'semantic-ui-react'
 
- export default function Loader(){
-    return(
-        <>
-        <Spinner animation="border" variant="success" />
-        </>
-    )
+export default function Loading() {
+  return (
+ 
+        <Loader size="small" active>
+          Loading
+        </Loader>
+
+  );
 }

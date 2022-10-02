@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import PageNav from "../../components/PageNav/PageNav";
-import PageFooter from '../../components/PageFooter/PageFooter';
-
 import { useNavigate, Link } from "react-router-dom";
-
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment
+} from "semantic-ui-react";
 
 export default function LoginPage(props) {
   const [error, setError] = useState("");
   const [state, setState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -27,55 +29,65 @@ export default function LoginPage(props) {
     });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e){
     e.preventDefault();
-
     try {
       await userService.login(state);
       props.handleSignUpOrLogin();
       navigate("/");
-    } catch(err) {
-      setError(err.message);
+    } catch(err){
+      setError(err.message)
     }
   }
 
-  return (
-    <>
-    <PageNav />
-    <h1>Login</h1>
-<Card>
-      <Card.Body>
-    <Form onSubmit={handleSubmit}>
-    <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              name="email"
-              type="text"
-              placeholder="Enter email"
-              value={state.email}
-              onChange={handleChange}
-              required/>
-              </Form.Group>
-            <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-            <Form.Control
-            error={error.passwordError}
-              name="password"
-              type="password"
-              placeholder="Enter password"
-              value={state.password}
-              onChange={handleChange}
-              required/>
-              </Form.Group>
-             <Button variant="primary" type="submit">
-              Log In
-            </Button>
-          {error.message ? <ErrorMessage error={error.message} /> : null}
-        </Form>     
-        </Card.Body>
-        </Card> 
 
-        <PageFooter />
-        </>
-    );
-  }
+
+  return (
+    <Grid
+        textAlign="center"
+        style={{ height: "100vh", width: "100vw" }}
+        verticalAlign="middle"
+      >
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h2" color="orange" textAlign="center">
+            <Image src="https://i.imgur.com/7qNjX9j.png" /> Log-in to your
+            account
+          </Header>
+          <Form onSubmit={handleSubmit}>
+            <Segment stacked>
+              <Form.Input
+                type="email"
+                name="email"
+                placeholder="email"
+                value={state.email}
+                onChange={handleChange}
+                required
+              />
+              <Form.Input
+                name="password"
+                type="password"
+                placeholder="password"
+                value={state.password}
+                onChange={handleChange}
+                required
+              />
+              <Button
+                color="orange"
+                fluid
+                size="large"
+                type="submit"
+                className="btn"
+              >
+                Login
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            Want to Join Good Company? <Link to="/signup">Sign Up</Link>
+          </Message>
+          {error ? <ErrorMessage error={error} /> : null}
+        </Grid.Column>
+      </Grid>
+  );
+}
+

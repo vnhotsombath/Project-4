@@ -1,63 +1,71 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Form, TextArea } from "semantic-ui-react";
 
-export default function AddPostForm(props){
-    const [state, setState] = useState({
-        title: "",
-        description: "",
+export default function AddPostForm(props) {
+  const [state, setState] = useState({
+    title: "",
+    content: "",
+  });
+
+  const [selectedFile, setSelectedFile] = useState("");
+
+  const navigate = useNavigate();
+
+  function handleFileInput(e) {
+    console.log(e.target.files, " < - this is e.target.files!");
+    setSelectedFile(e.target.files[0]);
+  }
+
+  function handleChange(e) {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
     });
+  }
 
-    const [selectedFile, setSelectedFile] = useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    function handleFileInput(e){
-        console.log(e.target.files, "<--this is e.target.files!");
-        setSelectedFile(e.target.files[0]);
+    const formData = new FormData();
+    formData.append("photo", selectedFile);
+    formData.append("Title", state.title);
+    formData.append("Content", state.content);
+    props.handleAddPost(formData);
+    navigate("/");
     }
-
-    function handleChange(e){
-        setState({
-            title: e.target.value,
-            description: e.target.value,
-        });
-    }
-
-    function handleSubmit(e){
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append("title", state.title)
-        formData.append("photo", selectedFile);
-        formData.append("description", state.description);
-        props.handleAddPost(formData);
-    }
-
-    return (
-        <Form onSubmit={handleSubmit}>
-        <InputGroup>
-        <InputGroup.Text>Title</InputGroup.Text>
-        <Form.Control
-        placeholder="title"
-        aria-label="title"
-        onChange={handleChange}
-        required />
-        <InputGroup.Text>Description</InputGroup.Text>
-        <Form.Control 
-        as ="textarea" 
-        aria-label="With textarea"
-        onChange={handleChange}
-        required
-         />
-        <br></br>
-        <Form.Control
-              name="photo"
-              type="file"
-              placeholder="upload image"
-              onChange={handleFileInput}
-              required />
-              <Button variant="success" as="input" type="submit" value="Submit" size="sm" />
-        </InputGroup>
-       </Form>
-    )
+   
+ 
+  return (
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Input
+          className="form-control"
+          name="title"
+          value={state.title}
+          placeholder="Title"
+          onChange={handleChange}
+          required
+        />
+        <Form.Input>
+          <TextArea
+          className="form-control"
+          name="content"
+          value={state.content}
+          placeholder="Content Here"
+          onChange={handleChange}
+          required
+        /></Form.Input>
+          <Form.Input
+            type="file"
+            name="photo"
+            placeholder="upload image"
+            onChange={handleFileInput}
+          />
+        <Button type="submit" className="btn">
+          Add Post
+        </Button>
+      </Form>
+    </>
+  );
 }

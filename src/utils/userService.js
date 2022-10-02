@@ -1,36 +1,41 @@
-import tokenService from './tokenService';
+import tokenService from "./tokenService";
 
-const BASE_URL = '/api/users/';
+const BASE_URL = "/api/users/";
 
-function getProfile(username){
-  console.log('getProfile calling')
+
+// PROFILE PAGE
+function getProfile(username) {
   return fetch(BASE_URL + username, {
     headers: {
-      'Authorization': 'Bearer ' + tokenService.getToken(),
-    }
-  }).then(res => {
-    if(res.ok) return res.json();
-    throw new Error('Bad Credentials!')
-  })
+      Authorization: "Bearer " + tokenService.getToken(), // <- since this will be called when we're logged in, send over the jwt token
+      // so the server knows who's making the request from the client
+    },
+  }).then((res) => {
+    // This function happens when the browser recieves a response from the express server
+
+    if (res.ok) return res.json();
+    throw new Error(
+      "Error from getProfile Request, check the server terminal!"
+    );
+  });
 }
 
 function signup(user) {
-  console.log(user, '<--USER SIGN UP');
-  return fetch(BASE_URL + 'signup', {
-    method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),
-    body: JSON.stringify(user) 
+  console.log(user, "<-user in signup");
+  return fetch(BASE_URL + "signup", {
+    method: "POST",
+    body: user
   })
-  .then(res => {
+  .then((res) => {
     if (res.ok) return res.json();
-    return res.json().then(response => {
-      console.log(response)
-      throw new Error(response.err)
-    })
+    return res.json().then((response) => {
+      console.log(response);
+      throw new Error(response.err);
+    });
   })
-  
-  .then(({token}) => tokenService.setToken(token));
+  .then(({ token }) => tokenService.setToken(token));
 }
+
 
 function getUser() {
   return tokenService.getUserFromToken();
@@ -41,28 +46,28 @@ function logout() {
 }
 
 function login(creds) {
-  return fetch(BASE_URL + 'login', {
-    method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),
-    body: JSON.stringify(creds)
+  return fetch(BASE_URL + "login", {
+    method: "POST",
+    headers: new Headers({ "Content-Type": "application/json" }),
+    body: JSON.stringify(creds),
   })
-  .then(res => {
-    if (res.ok) return res.json();
-    return res.json().then(response => {
-      console.log(response)
-      throw new Error(response.err)
+    .then((res) => {
+      // Valid login if we have a status of 2xx (res.ok)
+      if (res.ok) return res.json();
+      return res.json().then((response) => {
+        console.log(response);
+        throw new Error(response.err);
+      });
     })
-  })
-  .then(({token}) => tokenService.setToken(token));
+    .then(({ token }) => tokenService.setToken(token));
 }
 
-
 const userService = {
-  signup, 
-  getUser,
+  signup,
   logout,
   login,
-  getProfile
+  getUser,
+  getProfile,
 };
 
 export default userService;
