@@ -8,7 +8,7 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser, removePost
 //----DELETE----//
   async function deleteClickHandler() {
     try {
-      removePost(post._id);
+      const post = await removePost(post._id);
     } catch (err) {
       console.log(err,"this is the error")
     }
@@ -82,7 +82,6 @@ const clickHandler =
           )}
         </Card.Content>
       ) : null}
-      <Link to={`/${post._id}`}>Detail</Link>
     </Card>
   );
 }

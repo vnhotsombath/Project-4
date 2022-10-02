@@ -66,7 +66,7 @@ export function deletePost(postID) {
     if (res.ok) return res.json();
 
     return res.json().then((response) => {
-      console.log(response, "<-- get postapi");
+      console.log(response, "<----DELETE API");
       throw new Error(response.err);
     });
   });

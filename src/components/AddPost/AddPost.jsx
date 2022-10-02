@@ -29,8 +29,8 @@ export default function AddPostForm(props) {
 
     const formData = new FormData();
     formData.append("photo", selectedFile);
-    formData.append("Title", state.title);
-    formData.append("Content", state.content);
+    formData.append("title", state.title);
+    formData.append("content", state.content);
     props.handleAddPost(formData);
     navigate("/");
     }
