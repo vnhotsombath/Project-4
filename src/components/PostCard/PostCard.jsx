@@ -1,32 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Image, Icon, Segment } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+function PostCard({
+  post,
+  isProfile,
+  addLike,
+  removeLike,
+  loggedUser,
+  handleDeletePost,
+}) {
 
-function PostCard({ post, isProfile, addLike, removeLike, loggedUser, removePost }) {
+const [state, setState] = useState(false);
 
-//----DELETE----//
-  async function deleteClickHandler() {
-    try {
-      const post = await removePost(post._id);
-    } catch (err) {
-      console.log(err,"this is the error")
-    }
+  //----DELETE----//
+
+  function handlesubmit(e) {
+    e.preventDefault();
+    const request = post._id;
+    handleDeletePost(request);
+    setState(false)
   }
 
-//----LIKES----//
-const likedIndex = post.likes.findIndex(
-  (like) => like.username === loggedUser.username
-);
+  //   async function deleteClickHandler(e) {
+  //     try {
+  //       const response = await removePost(post._id);
+  //       console.log(response, "<---remove post");
+  //       navigate("/")
+  //     } catch (err) {
+  //       console.log(err,"this is the error")
+  //     }
+  //   }
 
-// if likedIndex is -1 the color should be 'grey' (the user wasn't in the post.likes array)
-// likedIndex is greater then -1 (the user is in the post.likes array) the color should be red
-const likeColor = likedIndex > -1 ? "red" : "grey";
-                   
-const clickHandler =
-  likedIndex > -1
-    ? () => removeLike(post.likes[likedIndex]._id) // user has liked the post 
-    : () => addLike(post._id);  // user hasn't liked the post handler
+  //----LIKES----//
+  const likedIndex = post.likes.findIndex(
+    (like) => like.username === loggedUser.username
+  );
+
+  // if likedIndex is -1 the color should be 'grey' (the user wasn't in the post.likes array)
+  // likedIndex is greater then -1 (the user is in the post.likes array) the color should be red
+  const likeColor = likedIndex > -1 ? "red" : "grey";
+
+  const clickHandler =
+    likedIndex > -1
+      ? () => removeLike(post.likes[likedIndex]._id) // user has liked the post
+      : () => addLike(post._id); // user hasn't liked the post handler
 
   return (
     <Card key={post._id} raised>
@@ -36,7 +54,7 @@ const clickHandler =
         <Card.Content textAlign="left">
           <Card.Header>
             <Link to={`/${post.user.username}`}>
-            <Image
+              <Image
                 size="large"
                 avatar
                 src={
@@ -50,8 +68,8 @@ const clickHandler =
           </Card.Header>
         </Card.Content>
       )}
-       <Image src={`${post?.photoUrl}`} wrapped ui={false} />
-        <Card.Content>
+      <Image src={`${post?.photoUrl}`} wrapped ui={false} />
+      <Card.Content>
         <Card.Description>{post.title}</Card.Description>
       </Card.Content>
       <Card.Content>
@@ -64,7 +82,8 @@ const clickHandler =
               <Icon
                 name={"delete"}
                 color={"red"}
-                onClick={deleteClickHandler}
+                onClick={clickHandler}
+                required
               />
             </Link>
           ) : (
@@ -75,6 +94,7 @@ const clickHandler =
                   size="large"
                   color={likeColor}
                   onClick={clickHandler}
+                  required
                 />
               </Link>
               {post.likes.length}
@@ -85,5 +105,5 @@ const clickHandler =
     </Card>
   );
 }
-  
+
 export default PostCard;

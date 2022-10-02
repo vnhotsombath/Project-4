@@ -54,9 +54,9 @@ export function getPost(id) {
 
 
 
-export function deletePost(postID) {
+export function deletePost(postId) {
   console.log("Delete api")
-  return fetch(BASE_URL + "/" + postID, {
+  return fetch(BASE_URL + "/" + postId, {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + tokenService.getToken(), // This grabs thee JWT token out
