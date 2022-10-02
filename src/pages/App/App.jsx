@@ -57,7 +57,6 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />} />
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

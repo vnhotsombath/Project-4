@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Image, Icon, Segment } from "semantic-ui-react";
 import { Link, useNavigate } from "react-router-dom";
+import * as postsAPI from "../../utils/postApi";
 
 function PostCard({
   post,
@@ -8,29 +9,28 @@ function PostCard({
   addLike,
   removeLike,
   loggedUser,
-  handleDeletePost,
+  removePost,
 }) {
 
-const [state, setState] = useState(false);
+const navigate = useNavigate();
 
   //----DELETE----//
 
-  function handlesubmit(e) {
-    e.preventDefault();
-    const request = post._id;
-    handleDeletePost(request);
-    setState(false)
-  }
+//   function handlesubmit(e) {
+//     e.preventDefault();
+//     const request = post._id;
+//     handleDeletePost(request);
+//     setState(false)
+//   }
 
-  //   async function deleteClickHandler(e) {
-  //     try {
-  //       const response = await removePost(post._id);
-  //       console.log(response, "<---remove post");
-  //       navigate("/")
-  //     } catch (err) {
-  //       console.log(err,"this is the error")
-  //     }
-  //   }
+    async function deleteClickHandler(e) {
+      try {
+        await postsAPI.deletePost(post._id);
+        navigate("/")
+      } catch (err) {
+        console.log(err,"this is the error")
+      }
+    }
 
   //----LIKES----//
   const likedIndex = post.likes.findIndex(
@@ -82,8 +82,7 @@ const [state, setState] = useState(false);
               <Icon
                 name={"delete"}
                 color={"red"}
-                onClick={clickHandler}
-                required
+                onClick={deleteClickHandler}
               />
             </Link>
           ) : (
@@ -94,7 +93,6 @@ const [state, setState] = useState(false);
                   size="large"
                   color={likeColor}
                   onClick={clickHandler}
-                  required
                 />
               </Link>
               {post.likes.length}
