@@ -2,6 +2,7 @@ import { createMedia } from '@artsy/fresnel';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
 import {
   Button,
   Container,
@@ -99,17 +100,21 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item to='/' active>
-                  Home
+                <Menu.Item>
+                <Link to="/">
+                  <Button inverted={!fixed}>Home</Button>
+                  </Link>
                 </Menu.Item>
 
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
+                  <Link to="/login">
+                  <Button inverted={!fixed}>
                     Log in
-                  </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  </Button></Link>
+                  <Link to="/signup">
+                  <Button inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     Sign Up
-                  </Button>
+                  </Button></Link>
                 </Menu.Item>
               </Container>
             </Menu>
@@ -194,10 +199,7 @@ MobileContainer.propTypes = {
 }
 
 const ResponsiveContainer = ({ children }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
+
   <MediaContextProvider>
     <DesktopContainer>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
@@ -261,53 +263,22 @@ const HomepageLayout = () => (
       </Grid>
     </Segment>
 
-    <Segment style={{ padding: '0em' }} vertical>
+    <Segment style={{ padding: '3em' }} vertical>
     <Grid.Column>
     <Image.Group>
             <Image bordered rounded size='large' src='https://i.imgur.com/quwUJ0B.jpg' />
             <Image bordered rounded size='large' src="https://i.imgur.com/Qd2LppU.jpg" />
             <Image bordered rounded size='large' src="https://i.imgur.com/vw1auCK.jpg" />
             <Image bordered rounded size='large' src="https://i.imgur.com/zOXVG0Y.jpg" />
-            <Image bordered rounded size='large' src="https://i.imgur.com/SxtPdPc.jpg" />
+            <Image bordered rounded size='large' src="https://i.imgur.com/Opi0Vo6.jpg" />
             
     </Image.Group>
           </Grid.Column>
           
     </Segment>
 
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
-              <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
-              <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                Footer Header
-              </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
+    <Segment vertical style={{ padding: '0em' }}>  
+    <Footer />
     </Segment>
   </ResponsiveContainer>
 )
