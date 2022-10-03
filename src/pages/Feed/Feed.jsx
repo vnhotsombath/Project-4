@@ -58,6 +58,7 @@ export default function Feed({ loggedUser, handleLogout }) {
   }
 
   useEffect(() => {
+    console.log(posts, "<---this is the post");
     getPosts();
   }, []); 
 

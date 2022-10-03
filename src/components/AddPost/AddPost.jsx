@@ -24,14 +24,14 @@ export default function AddPostForm(props) {
     });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("photo", selectedFile);
     formData.append("title", state.title);
     formData.append("content", state.content);
-    props.handleAddPost(formData);
+    await props.handleAddPost(formData);
     navigate("/");
   }
 
