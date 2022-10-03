@@ -36,6 +36,16 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
+  async function handleAddPost(post) {
+    try {
+      const response = await postsAPI.create(post);
+
+      console.log(response);
+      setPosts([response.data, ...posts]);
+    } catch (err) {
+      setError("Error creating post, please try again");
+    }
+  }
 
   async function getPosts() {
     try {
@@ -92,6 +102,8 @@ export default function Feed({ loggedUser, handleLogout }) {
           />
         </Grid.Column>
       </Grid.Row>
+      <Footer />
     </Grid>
+    
   );
 }
