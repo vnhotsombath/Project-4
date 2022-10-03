@@ -32,4 +32,8 @@
 * More styling to the posts and profile page
 
 # ACKNOWLEDGMENT
-- Fellow peers, friends and family who offered feed-back, guidance and positive thoughts!
+- Team Shaky/Team BeastCoast :)
+- Jeff (API questions)
+- Jason (MVP helped with debugging)
+- KeiLee (Heroku Savior)
+- All the instructors 
