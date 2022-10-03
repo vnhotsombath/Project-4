@@ -38,13 +38,13 @@ export default function Write({ loggedUser, handleLogout }) {
         <Grid.Column>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row className="header-clearance">
+      <Grid.Row>
         <Grid.Column textAlign="center">
           <p><h1>POST YOUR MEAL</h1></p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ width: 450 }} >
+        <Grid.Column style={{ width: 500} } >
           <AddPost handleAddPost={handleAddPost} />
           <p>{error}</p>
         </Grid.Column>

@@ -6,7 +6,6 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import Profile from "../Profile/Profile";
 import FeedPage from "../Feed/Feed";
-import PostDetail from "../PostDetailPage/PostDetail";
 import Write from "../Write/Write";
 import About from "../../components/About/About";
 
@@ -42,12 +41,6 @@ function App() {
         <Route
           path="/:username"
           element={<Profile loggedUser={user} handleLogout={handleLogout} />}
-        />
-        <Route
-          path="/details/:id"
-          element={
-            <PostDetail loggedUser={user} handleLogout={handleLogout} />
-          }
         />
         <Route
           path="/write"
