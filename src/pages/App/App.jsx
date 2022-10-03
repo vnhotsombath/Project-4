@@ -8,6 +8,8 @@ import Profile from "../Profile/Profile";
 import FeedPage from "../Feed/Feed";
 import PostDetail from "../PostDetailPage/PostDetail";
 import Write from "../Write/Write";
+import About from "../../components/About/About";
+
 import userService from "../../utils/userService";
 
 function App() {
@@ -67,8 +69,9 @@ function App() {
       />
        <Route
         path="/"
-        element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        element={<FeedPage handleLogout={handleLogout} />}
       />
+      <Route path="/about" element={<About />} />
       <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );

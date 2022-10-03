@@ -84,7 +84,7 @@ export default function Feed({ loggedUser, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 1000 }}>
+        <Grid.Column style={{ maxWidth: 800 }}>
           <PostGallery
             posts={posts}
             numPhotosCol={1}

@@ -35,11 +35,9 @@ const navigate = useNavigate();
 
   //----LIKES----//
   const likedIndex = post.likes.findIndex(
-    (like) => like.username === loggedUser.username
+    (like) => like.username === loggedUser?.username
   );
 
-  // if likedIndex is -1 the color should be 'grey' (the user wasn't in the post.likes array)
-  // likedIndex is greater then -1 (the user is in the post.likes array) the color should be red
   const likeColor = likedIndex > -1 ? "red" : "grey";
 
   const clickHandler =
