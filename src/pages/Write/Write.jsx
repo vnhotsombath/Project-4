@@ -11,46 +11,44 @@ export default function Write({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
 
   async function handleAddPost(post) {
-    
     try {
-      console.log('creating post!');
-      const response = await postsAPI.create(post); // waiting for the json to be return from the server and parsed by us!
+      const response = await postsAPI.create(post);
 
-      // data is the response from the api, the result of the .then if(res.ok) return res.json() in the create postAPI utils function
       console.log(response);
-      setPosts([response.data, ...posts]); /// ...posts would keep all the posts in the previous states array
+      setPosts([response.data, ...posts]);
     } catch (err) {
-      // this is the error from the throw block, in the postsAPI.create function
-      console.log(err.message);
       setError("Error creating post, please try again");
     }
   }
 
   return (
     <>
-    <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
-    <Grid className="write-hero-image"
+      <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+      <Grid
+        className="write-hero-image"
         textAlign="center"
         style={{ height: "100vh" }}
         verticalAlign="middle"
       >
-        <Grid.Column style={{width: "450px"}}>
+        <Grid.Column style={{ width: "450px" }}>
           <Grid.Row>
-        <Grid.Column> </Grid.Column>
-        </Grid.Row>
-      <Grid.Row className="header-clearance">
-        <Grid.Column textAlign="center">
-          <p><h1>POST YOUR MEAL</h1></p>
+            <Grid.Column> </Grid.Column>
+          </Grid.Row>
+          <Grid.Row className="header-clearance">
+            <Grid.Column textAlign="center">
+              <p>
+                <h1>POST YOUR MEAL</h1>
+              </p>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>
+              <AddPost handleAddPost={handleAddPost} />
+              <p>{error}</p>
+            </Grid.Column>
+          </Grid.Row>
         </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column >
-          <AddPost handleAddPost={handleAddPost} />
-          <p>{error}</p>
-        </Grid.Column>
-      </Grid.Row>
-      </Grid.Column>
-    </Grid>
+      </Grid>
     </>
   );
 }

@@ -8,7 +8,7 @@ import Loading from "../../components/Loader/Loader";
 
 import { Grid } from "semantic-ui-react";
 
-// this says import all the export function calls as postsAPI.functionName
+
 import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
 
@@ -20,11 +20,9 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function addLike(postId) {
     try {
       const response = await likesAPI.create(postId);
-      console.log(response, "from add like");
       getPosts();
    
     } catch (err) {
-      console.log(err, " err from server");
       setError("error adding like");
     }
   }
@@ -32,10 +30,8 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function removeLike(likeId) {
     try {
       const response = await likesAPI.removeLike(likeId);
-      console.log(response, " remove like");
       getPosts();
     } catch (err) {
-      console.log(err);
       setError("error removing like");
     }
   }
@@ -44,20 +40,16 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
-      console.log(response, " data");
       setPosts([...response.data]);
       setLoading(false);
     } catch (err) {
-      console.log(err.message, " this is the error");
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    //Getting posts, C(R)UD
-    console.log("USEEFFECTTTTTTTT")
     getPosts();
-  }, []); // This is useEffect runs once when the Feed component
+  }, []); 
 
   if (error) {
     return (

@@ -1,0 +1,13 @@
+.signup-hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.imgur.com/XC11lYW.jpg");
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.signup-Header-Title {
+    -webkit-text-stroke: 1px black;
+    
+}

@@ -11,27 +11,26 @@ function PostCard({
   loggedUser,
   getPosts,
 }) {
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   //----DELETE----//
 
-//   function handlesubmit(e) {
-//     e.preventDefault();
-//     const request = post._id;
-//     handleDeletePost(request);
-//     setState(false)
-//   }
+  //   function handlesubmit(e) {
+  //     e.preventDefault();
+  //     const request = post._id;
+  //     handleDeletePost(request);
+  //     setState(false)
+  //   }
 
-    async function deleteClickHandler(e) {
-      try {
-        await postsAPI.deletePost(post._id);
-        getPosts();
-        navigate("/")
-      } catch (err) {
-        console.log(err,"this is the error")
-      }
+  async function deleteClickHandler(e) {
+    try {
+      await postsAPI.deletePost(post._id);
+      getPosts();
+      navigate("/");
+    } catch (err) {
+      console.log(err, "this is the error");
     }
+  }
 
   //----LIKES----//
   const likedIndex = post.likes.findIndex(
@@ -42,8 +41,8 @@ const navigate = useNavigate();
 
   const clickHandler =
     likedIndex > -1
-      ? () => removeLike(post.likes[likedIndex]._id) 
-      : () => addLike(post._id); 
+      ? () => removeLike(post.likes[likedIndex]._id)
+      : () => addLike(post._id);
 
   return (
     <Card key={post._id} raised>
@@ -70,10 +69,10 @@ const navigate = useNavigate();
       <Image src={`${post?.photoUrl}`} wrapped ui={false} />
       <Card.Content>
         <Card.Description textAlign="center">
-            {post.title}
-        <br />
-            {post.content}
-      </Card.Description>
+          {post.title}
+          <br />
+          {post.content}
+        </Card.Description>
       </Card.Content>
       {loggedUser ? (
         <Card.Content>

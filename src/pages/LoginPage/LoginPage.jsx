@@ -8,9 +8,8 @@ import {
   Form,
   Grid,
   Header,
-  Image,
   Message,
-  Segment
+  Segment,
 } from "semantic-ui-react";
 
 export default function LoginPage(props) {
@@ -29,64 +28,67 @@ export default function LoginPage(props) {
     });
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
       await userService.login(state);
       props.handleSignUpOrLogin();
       navigate("/");
-    } catch(err){
-      setError(err.message)
+    } catch (err) {
+      setError(err.message);
     }
   }
 
-
-
   return (
-    <Grid className="hero-image"
-        textAlign="center"
-        style={{ height: "100vh", width: "100vw" }}
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header className="Header-Title" as="h2" color="orange" textAlign="center">
-            Welcome Back
-          </Header>
-          <Form onSubmit={handleSubmit}>
-            <Segment stacked>
-              <Form.Input
-                type="email"
-                name="email"
-                placeholder="email"
-                value={state.email}
-                onChange={handleChange}
-                required
-              />
-              <Form.Input
-                name="password"
-                type="password"
-                placeholder="password"
-                value={state.password}
-                onChange={handleChange}
-                required
-              />
-              <Button
-                color="black"
-                fluid
-                size="large"
-                type="submit"
-                className="btn"
-              >
-                Login
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
-            Want to Join Good Company? <Link to="/signup">Sign Up</Link>
-          </Message>
-          {error ? <ErrorMessage error={error} /> : null}
-        </Grid.Column>
-      </Grid>
+    <Grid
+      className="hero-image"
+      textAlign="center"
+      style={{ height: "100vh", width: "100vw" }}
+      verticalAlign="middle"
+    >
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header
+          className="Header-Title"
+          as="h2"
+          color="orange"
+          textAlign="center"
+        >
+          Welcome Back
+        </Header>
+        <Form onSubmit={handleSubmit}>
+          <Segment stacked>
+            <Form.Input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={state.email}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="password"
+              type="password"
+              placeholder="password"
+              value={state.password}
+              onChange={handleChange}
+              required
+            />
+            <Button
+              color="black"
+              fluid
+              size="large"
+              type="submit"
+              className="btn"
+            >
+              Login
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          Want to Join Good Company? <Link to="/signup">Sign Up</Link>
+        </Message>
+        {error ? <ErrorMessage error={error} /> : null}
+      </Grid.Column>
+    </Grid>
   );
 }
-

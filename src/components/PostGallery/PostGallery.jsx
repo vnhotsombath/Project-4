@@ -4,7 +4,6 @@ import PostCard from "../PostCard/PostCard";
 import Loader from "../Loader/Loader";
 
 export default function PostGallery({
-  numPhotosCol,
   posts,
   isProfile,
   addLike,
@@ -12,19 +11,16 @@ export default function PostGallery({
   loading,
   loggedUser,
   removePost,
-  getPosts
+  getPosts,
 }) {
-
- //Sort
- posts.sort(function(a,b) {
+  posts.sort(function (a, b) {
     if (a.createdAt > b.createdAt) return -1;
     else if (b.createdAt > a.createdAt) return 1;
-     else return 0;
-    });
-  
-  
+    else return 0;
+  });
+
   return (
-    <Card.Group itemsPerRow={numPhotosCol} stackable >
+    <Card.Group itemsPerRow={1} stackable>
       {loading ? (
         <Segment>
           <Dimmer active inverted>
@@ -44,7 +40,6 @@ export default function PostGallery({
             addLike={addLike}
             removePost={removePost}
             getPosts={getPosts}
-          
           />
         );
       })}

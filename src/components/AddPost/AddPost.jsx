@@ -33,9 +33,8 @@ export default function AddPostForm(props) {
     formData.append("content", state.content);
     props.handleAddPost(formData);
     navigate("/");
-    }
-   
- 
+  }
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -49,19 +48,20 @@ export default function AddPostForm(props) {
         />
         <Form.Input>
           <TextArea
-          className="form-control"
-          name="content"
-          value={state.content}
-          placeholder="Content Here"
-          onChange={handleChange}
-          required
-        /></Form.Input>
-          <Form.Input
-            type="file"
-            name="photo"
-            placeholder="upload image"
-            onChange={handleFileInput}
+            className="form-control"
+            name="content"
+            value={state.content}
+            placeholder="Content Here"
+            onChange={handleChange}
+            required
           />
+        </Form.Input>
+        <Form.Input
+          type="file"
+          name="photo"
+          placeholder="upload image"
+          onChange={handleFileInput}
+        />
         <Button type="submit" className="btn" align="center">
           Add Post
         </Button>

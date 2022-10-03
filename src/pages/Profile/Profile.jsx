@@ -18,7 +18,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const { username } = useParams(); // username is defined in the App folder in the Router path="/:username"
+  const { username } = useParams(); 
 
   async function removePost(postId) {
     try {

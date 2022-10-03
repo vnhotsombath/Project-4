@@ -2,10 +2,19 @@ import React from "react";
 import PostGallery from "../PostGallery/PostGallery";
 import { Grid } from "semantic-ui-react";
 
-export default function PostDisplayForm({posts,isProfile,addLike,removeLike,loggedUser,setPosts,setProfileUser,itemsPerRow}) {
+export default function PostDisplayForm({
+  posts,
+  isProfile,
+  addLike,
+  removeLike,
+  loggedUser,
+  setPosts,
+  setProfileUser,
+  itemsPerRow,
+}) {
   return (
     <Grid centered>
-      <Grid.Row >
+      <Grid.Row>
         <Grid.Column centered>
           <div className="post-details">
             <PostGallery

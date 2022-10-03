@@ -13,7 +13,7 @@ import About from "../../components/About/About";
 import userService from "../../utils/userService";
 
 function App() {
-  const [user, setUser] = useState(userService.getUser()); 
+  const [user, setUser] = useState(userService.getUser());
 
   const navigate = useNavigate();
 
@@ -30,7 +30,10 @@ function App() {
   if (user) {
     return (
       <Routes>
-        <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />} />
+        <Route
+          path="/"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -53,7 +56,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} /> 
+      <Route path="/" element={<HomePage />} />
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -62,11 +65,7 @@ function App() {
         path="/signup"
         element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
       />
-       <Route
-        path="/"
-        element={<FeedPage handleLogout={handleLogout} />}
-      />
-      <Route path="/about" element={<About />} />
+      <Route path="/" element={<FeedPage handleLogout={handleLogout} />} />
       <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
