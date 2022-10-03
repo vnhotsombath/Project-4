@@ -42,7 +42,7 @@ async function index(req, res) {
     res.status(200).json({ data: posts });
   } catch (err) {
     res.status(400).json({ err });
-  }ß
+  }
 }
 
 // ----GET POST DETAILS---- //
