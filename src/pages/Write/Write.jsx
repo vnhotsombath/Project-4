@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../../components/Header/Header";
 import AddPost from "../../components/AddPost/AddPost";
+import "./Write.css";
 
 import { Grid } from "semantic-ui-react";
 import * as postsAPI from "../../utils/postApi";
@@ -26,25 +27,29 @@ export default function Write({ loggedUser, handleLogout }) {
   }
 
   return (
-    <Grid centered>
+    <>
+    <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+    <Grid className="hero-image"
+        textAlign="center"
+        style={{ height: "100vh" }}
+        verticalAlign="middle"
+      >
       <Grid.Row>
         <Grid.Column>
-          <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row className="header-clearance">
         <Grid.Column textAlign="center">
-          <p className="large-font-size sub-header">Blog Post</p>
+          <p><h1>POST YOUR MEAL</h1></p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ width: 150 }}>
-        </Grid.Column>
-        <Grid.Column style={{ width: 450 }}>
+        <Grid.Column style={{ width: 450 }} >
           <AddPost handleAddPost={handleAddPost} />
           <p>{error}</p>
         </Grid.Column>
       </Grid.Row>
     </Grid>
+    </>
   );
 }

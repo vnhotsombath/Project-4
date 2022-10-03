@@ -12,15 +12,13 @@ export default function PageHeader({ loggedUser, handleLogout }) {
       <Header as="h2" floated="right">
       <Link to="/write">
             <Icon name="edit" color="orange" avatar/>
-            Write
             </Link>
         <Link to="/">
           <Icon name="home" color= "orange" />
         </Link>
 
         <Link to="" onClick={handleLogout}>
-        <Icon name="signup" color="orange"></Icon>
-          Logout
+        <Icon name="sign out" color="orange"></Icon>
         </Link>
       </Header>
       <Header as="h2" floated="left">

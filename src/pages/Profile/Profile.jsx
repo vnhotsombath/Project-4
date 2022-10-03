@@ -32,6 +32,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }
 
+
   const getProfile = useCallback(async () => {
     try {
       const response = await userService.getProfile(username); 
@@ -54,6 +55,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
     getProfile();
   }, [username, getProfile]);
+
 
   if (error) {
     return (
@@ -86,11 +88,11 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row centered>
-        <Grid.Column style={{ maxWidth: 1000 }}>
+        <Grid.Column style={{ maxWidth: 800 }}>
         <p><h1>Recent Posts</h1></p>
           <PostGallery
             posts={posts}
-            numPhotosCol={1}
+            numPhotosCol={2}
             isProfile={true}
             loading={loading}
             loggedUser={loggedUser}

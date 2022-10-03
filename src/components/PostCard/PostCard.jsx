@@ -42,8 +42,8 @@ const navigate = useNavigate();
 
   const clickHandler =
     likedIndex > -1
-      ? () => removeLike(post.likes[likedIndex]._id) // user has liked the post
-      : () => addLike(post._id); // user hasn't liked the post handler
+      ? () => removeLike(post.likes[likedIndex]._id) 
+      : () => addLike(post._id); 
 
   return (
     <Card key={post._id} raised>
@@ -69,10 +69,11 @@ const navigate = useNavigate();
       )}
       <Image src={`${post?.photoUrl}`} wrapped ui={false} />
       <Card.Content>
-        <Card.Description>{post.title}</Card.Description>
-      </Card.Content>
-      <Card.Content>
-        <Card.Description>{post.content}</Card.Description>
+        <Card.Description textAlign="center">
+            {post.title}
+        <br />
+            {post.content}
+      </Card.Description>
       </Card.Content>
       {loggedUser ? (
         <Card.Content>

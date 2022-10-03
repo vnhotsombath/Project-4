@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import PageHeader from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
@@ -63,6 +64,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       <>
         <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         <ErrorMessage error={error} />;
+        <Footer />
       </>
     );
   }
@@ -72,6 +74,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       <>
         <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         <Loading />
+        <Footer />
       </>
     );
   }
