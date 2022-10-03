@@ -32,6 +32,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             avatar
           ></Image>
         </Link>
+        TheGoodEatsCo.
       </Header>
     </Segment>
   );
@@ -39,12 +40,10 @@ export default function PageHeader({ loggedUser, handleLogout }) {
 return (
   <Segment clearing>
     <Header as="h1" floated="left">
-      <Link to={`/${loggedUser?.username}`}>
           <Image
             src={"https://i.imgur.com/x7pzPhG.png"}
             size="small"
           ></Image>
-        </Link>
         </Header>
       <Header className="Header-Nav" as="h1" floated="right">
         <Link to="/">

@@ -29,26 +29,27 @@ export default function Write({ loggedUser, handleLogout }) {
   return (
     <>
     <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
-    <Grid className="hero-image"
+    <Grid className="write-hero-image"
         textAlign="center"
         style={{ height: "100vh" }}
         verticalAlign="middle"
       >
-      <Grid.Row>
-        <Grid.Column>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
+        <Grid.Column style={{width: "450px"}}>
+          <Grid.Row>
+        <Grid.Column> </Grid.Column>
+        </Grid.Row>
+      <Grid.Row className="header-clearance">
         <Grid.Column textAlign="center">
           <p><h1>POST YOUR MEAL</h1></p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ width: 500} } >
+        <Grid.Column >
           <AddPost handleAddPost={handleAddPost} />
           <p>{error}</p>
         </Grid.Column>
       </Grid.Row>
+      </Grid.Column>
     </Grid>
     </>
   );
