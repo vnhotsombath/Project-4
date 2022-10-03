@@ -8,7 +8,6 @@ import HomePage from "../HomePage/HomePage";
 import Profile from "../Profile/Profile";
 import FeedPage from "../Feed/Feed";
 import Write from "../Write/Write";
-import About from "../../components/About/About";
 
 import userService from "../../utils/userService";
 

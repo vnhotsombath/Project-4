@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Icon, Segment } from "semantic-ui-react";
+import { Card, Image, Icon } from "semantic-ui-react";
 import { Link, useNavigate } from "react-router-dom";
 import * as postsAPI from "../../utils/postApi";
 
