@@ -2,7 +2,7 @@
 
 ### A place for foodies to gather. Here you can share your favorite places to eat, all while discovering hidden gems you've yet to find! 
 
-Check out the app 
+[If you're a foodie click it!](https://thegoodeatsco.herokuapp.com/)
 
 
 # Visuals 
