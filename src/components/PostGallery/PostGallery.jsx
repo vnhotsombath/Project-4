@@ -15,7 +15,14 @@ export default function PostGallery({
   getPosts
 }) {
 
-
+ // Sort
+//  posts.sort(function(a,b) {
+//     if (a.createdAt > b.createdAt) return -1;
+//     else if (b.createdAt > a.createdAt) return 1;
+//      else return 0;
+//     });
+  
+  
   return (
     <Card.Group itemsPerRow={numPhotosCol} stackable >
       {loading ? (
