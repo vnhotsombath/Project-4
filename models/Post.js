@@ -5,7 +5,7 @@ const likesSchema = mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId }
 })
 
-const PostSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
     title: String,
     photoUrl: String,
     content: String,
@@ -13,4 +13,4 @@ const PostSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Post", postSchema);
