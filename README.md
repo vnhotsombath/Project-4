@@ -17,8 +17,10 @@
 * MongoDb
 * Express
 * Node.js
-* Semantic UI
 * React
+* Semantic UI
+* Imgur 
+* Unsplash
 
 # Getting Started
 [Trello](https://trello.com/b/IQciTDvw/thegoodeatsco#)
