@@ -33,7 +33,7 @@
 
 # ACKNOWLEDGMENT
 - Team Shaky/Team BeastCoast :)
-- Jeff (API questions)
+- Jeff (API questions/came in to save the day!)
 - Jason (MVP helped with debugging)
 - KeiLee (Heroku Savior)
 - All the instructors 
