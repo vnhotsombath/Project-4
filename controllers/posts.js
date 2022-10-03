@@ -1,4 +1,4 @@
-const Post = require("../models/post");
+const Post = require("../models/Post");
 
 const S3 = require("aws-sdk/clients/s3");
 const s3 = new S3();
